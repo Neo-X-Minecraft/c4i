@@ -9,7 +9,6 @@
 - In c4i.js you can input a sequence of moves using columns numbered 0-6 and get a best column to move to as a result numbered 0-6 too.
 
 ## How to Use
-
 ### Getting Started
 
 1. **Include the Library**  
@@ -20,16 +19,19 @@
 
 2. **Call the getBestMove Function**  
    Use the `getBestMove(sequence)` function to compute the next best move. Give it a move sequence using columns 0-6. For example:
+
    ```js
    let sequence = "4251"; // Moves so far (0-6): first move in col 4, then col 2, etc.
    let bestMove = getBestMove(sequence);
    console.log("Best move (column):", bestMove);
    ```
+   
    The function returns an integer from 0 to 6 indicating the best column to make a move to.
 
 ### Detailed Example
 
 Below is an HTML example that demonstrates how to use the library:
+
 ```html
 <!DOCTYPE html>
 <html>
@@ -56,56 +58,54 @@ Below is an HTML example that demonstrates how to use the library:
   </body>
 </html>
 ```
+
 In this example the user inputs a move sequence `'4251'` into the text field. When the button is clicked, the `getBestMove` function is called and the best move (as a column numbered from 0 to 6) is displayed.
 
-## How To Build
-
+## How To Build (Linux only)
 ### Prerequisites:
 
 - **Node.js and npm:**  
-  Make sure you have [`Node.js and npm`](https://nodejs.org) installed.
+  Install `Node.js (22.14.0)` and `npm (10.9.2)` with:
 
+  ```bash
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh|bash;nvm install 22
+  ```
+  
 - **Brotli:**  
   The build process requires the Brotli command-line tool.
 
-  - **Linux:**  
-    ```bash
-    sudo apt update
-    sudo apt install brotli
-    ```
-
-  - **Windows:**  
-    You can install Brotli via [`Chocolatey`](https://chocolatey.org) by running:
-    ```powershell
-    choco install brotli
-    ```
-    Alternatively, download and install Brotli from its [`GitHub Releases`](https://github.com/google/brotli/releases).
+  ```bash
+  sudo apt update;sudo apt install brotli
+  ```
 
 ### Building:
 
 1. **Install Dependencies:**  
    In your project directory, run:
+
    ```bash
    npm install uglify-js simple-git node-fetch
    ```
     - Note that dependencies get cleaned after the build.
 
 2. **Run the Build Script:**
+
    ```bash
    node build.js
    ```
    - Note that building this takes roughly 1.5 to 2 minutes on average hardware.
 
-### Description:
+## Description:
 
-**Functions of different files:**
+### Functions of different files:
 
    - File b128.js is my library for decoding a custom Base128 string.
-
-   - File c4.js is my rewrite of [`PascalPons`](https://github.com/PascalPons) [`connect4 solver`](https://github.com/PascalPons/connect4) for web-browser JavaScript.
+ 
+   - File c4.js is my rewrite of [`connect4 solver`](https://github.com/PascalPons/connect4) by [`PascalPons`](https://github.com/PascalPons) for web-browser JavaScript.
+   - File demo.html is a graphical example of this library. It can be ran only when c4i.js is built.
    - File build.js is for building c4i.js. Read more about it below.
 
-**The build.js script performs the following steps:**
+### The build.js script performs the following steps:
 
 - Fetching Resources:  
   *It clones the [`brotlijs`](https://github.com/dominikhlbg/brotlijs) repository and downloads the [`book`](https://github.com/PascalPons/connect4/releases/download/book/7x6.book) file.*
